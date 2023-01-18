@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="module">
+  import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+
+
+  const url = 'http://127.0.0.1:5555'
+    const socket = io(url, {
+        transports: ["websocket"],
+        reconnectionDelayMax: 1000,
+    });
+    socket.on('connect', (err) => {
+      console.log('connected')
+      document.body.style.backgroundColor = "green";});
+    document.write('connected')
+    socket.on('connect_error', (err) => {
+      console.log(err)
+      document.body.style.backgroundColor = "red";});
+
+</script>
+
+</body>
+</html>
