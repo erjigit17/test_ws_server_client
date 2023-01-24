@@ -17,16 +17,16 @@ export class GeoGateway implements OnGatewayConnection {
     const clientId = client.id;
 
     Logger.log({ message: `Client connected: ${clientId}` })
-    const ip = client.handshake.headers['x-original-forwarded-for'];
+    const ip = client.handshake.headers['X-Forwarded-For'];
 
     if (!ip) {
       Logger.error({
-        reason: `Header "x-original-forwarded-for" is empty`,
+        reason: `Header "X-Forwarded-For" is empty`,
         headers: client.handshake.headers,
       });
     } else {
       Logger.log({
-        message: `Success! header "x-original-forwarded-for" is no empty, IP: ${ip}`,
+        message: `Success! header "X-Forwarded-For" is no empty, IP: ${ip}`,
       });
     }
   }
